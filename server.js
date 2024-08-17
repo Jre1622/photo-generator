@@ -20,6 +20,11 @@ app.set("view engine", "ejs");
 // app.use('/', require('./routes/index'));
 // app.use('/users', require('./routes/users'));
 
+// Home page route
+app.get("/", (req, res) => {
+  res.render("home");
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
