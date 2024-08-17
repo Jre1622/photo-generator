@@ -1,0 +1,13 @@
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# SQLite database files
+*.sqlite
+*.sqlite3
+*.db
+
+# macOS
+.DS_Store

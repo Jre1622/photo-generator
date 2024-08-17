@@ -1,0 +1,18 @@
+# Photo Generator
+
+This project is going to allow users online to generate AI images from a prompt they input.
+We should require account creation and require a one-time payment from them.
+This should be a single page website
+
+## Features
+
+- Register Account, hash+salt passwords
+- Login/Logout, remove the cookie stored on their browser
+- Make API calls and in our table make sure that we are saving everything into our sqlite3 database
+- Learn more about transactional emails and our entire web stack
+- Will solidify knowledge around making API calls
+
+## Things we will learn
+
+- The main things we will be learning is combining our entire stack into a functional full piece of software
+- From setting up a Domain name and the VPS and server settings. This will be a complete full stack
