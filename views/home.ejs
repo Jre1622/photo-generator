@@ -18,17 +18,31 @@
     </div>
 
     <!-- Modal -->
-    <div id="signUpModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Sign Up</h2>
-            <form id="registerForm">
-                <input type="email" id="email" required placeholder="Email">
-                <input type="password" id="password" required placeholder="Password">
-                <button type="submit">Register</button>
-            </form>
-            <div id="message"></div>
+    <<div id="authModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-tab="login">Login</button>
+          <button class="auth-tab" data-tab="register">Sign Up</button>
         </div>
+        <div id="loginForm" class="auth-form active">
+          <h2>Login</h2>
+          <form id="loginFormElement">
+            <input type="email" id="loginEmail" required placeholder="Email">
+            <input type="password" id="loginPassword" required placeholder="Password">
+            <button type="submit">Login</button>
+          </form>
+        </div>
+        <div id="registerForm" class="auth-form">
+          <h2>Sign Up</h2>
+          <form id="registerFormElement">
+            <input type="email" id="registerEmail" required placeholder="Email">
+            <input type="password" id="registerPassword" required placeholder="Password">
+            <button type="submit">Register</button>
+          </form>
+        </div>
+        <div id="message"></div>
+      </div>
     </div>
 
     <!-- Javascript Code for showing modal & fetching register route -->

@@ -1,13 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("signUpModal");
-  const signUpBtn = document.getElementById("signUpBtn");
+  const modal = document.getElementById("authModal");
+  const authBtn = document.getElementById("authBtn");
   const closeBtn = document.getElementsByClassName("close")[0];
+  const loginForm = document.getElementById("loginForm");
   const registerForm = document.getElementById("registerForm");
   const messageDiv = document.getElementById("message");
+  const authTabs = document.querySelectorAll(".auth-tab");
 
-  // Open the modal when Sign Up button is clicked
-  signUpBtn.onclick = () => {
+  // Open the modal when Auth button is clicked
+  authBtn.onclick = () => {
     modal.style.display = "block";
+    // Ensure the correct form is displayed initially
+    loginForm.style.display = "block";
+    registerForm.style.display = "none";
   };
 
   // Close the modal when 'x' is clicked
@@ -22,12 +27,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Handle form submission
+  // Tab switching logic
+  authTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      authTabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      if (tab.dataset.tab === "login") {
+        loginForm.style.display = "block";
+        registerForm.style.display = "none";
+      } else {
+        loginForm.style.display = "none";
+        registerForm.style.display = "block";
+      }
+    });
+  });
+
+  // Handle register form submission
   registerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("registerEmail").value;
+    const password = document.getElementById("registerPassword").value;
 
     try {
       const response = await fetch("/auth/register", {
@@ -38,19 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ email, password }),
       });
 
-      console.log("Response status:", response.status);
-      console.log("Response headers:", response.headers);
-
-      const rawText = await response.text();
-      console.log("Raw response:", rawText);
-
-      let data;
-      try {
-        data = JSON.parse(rawText);
-      } catch (e) {
-        console.error("Failed to parse JSON:", e);
-        throw new Error("Server response was not valid JSON");
-      }
+      const data = await response.json();
 
       if (!response.ok) {
         throw new Error(data.error || "Registration failed");
@@ -59,9 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
       messageDiv.textContent = "Registration successful!";
       messageDiv.style.color = "green";
     } catch (error) {
-      console.error("Error:", error);
       messageDiv.textContent = error.message;
       messageDiv.style.color = "red";
     }
+  });
+
+  // Handle login form submission (to be implemented)
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    // Login logic to be implemented
   });
 });
