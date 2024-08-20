@@ -1,22 +1,22 @@
 <nav class="navbar">
-    <div class="navbar-left">
-      <img src="/images/logo.png" alt="Logo" class="navbar-logo" />
-      <span class="navbar-brand">PhotoGen</span>
-    </div>
+  <div class="navbar-left">
+    <img src="/images/flask_sign_iconwebp.webp" alt="Logo" class="navbar-logo" width="30" height="30" />
+    <span class="navbar-brand">PhotoGen</span>
+  </div>
 
-    <div class="navbar-center">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/generate" class="nav-link">Generate</a>
-      <a href="/gallery" class="nav-link">Gallery</a>
-      <a href="/pricing" class="nav-link">Pricing</a>
-      <a href="/about" class="nav-link">About</a>
-    </div>
+  <div class="navbar-center">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/generate" class="nav-link">Generate</a>
+    <a href="/gallery" class="nav-link">Gallery</a>
+    <a href="/pricing" class="nav-link">Pricing</a>
+    <a href="/about" class="nav-link">About</a>
+  </div>
 
-    <div class="navbar-right">
-      <% if (isAuthenticated) { %>
-        <button id="logoutBtn" class="btn btn-primary">Logout</button>
-      <% } else { %>
-        <button id="authBtn" class="btn btn-primary">Login / Sign Up</button>
-      <% } %>
-    </div>
+  <div class="navbar-right">
+    <% if (isAuthenticated) { %>
+      <button id="logoutBtn" class="btn btn-primary">Logout</button>
+    <% } else { %>
+      <button id="authBtn" class="btn btn-primary">Login/Sign Up</button>
+    <% } %>
+  </div>
 </nav>

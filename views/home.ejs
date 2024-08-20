@@ -11,10 +11,13 @@
         <%- include('partials/navbar') %>
 
         <div class="content">
-            <h1>Welcome to Photo Generator</h1>
-            <p>Create stunning AI-generated images from your text prompts. Unleash your creativity with our cutting-edge technology.</p>
-            <button class="cta-button">Get Started</button>
-        </div>
+          <h1>Generate AI Image</h1>
+          <div class="image-generator">
+              <textarea id="promptInput" placeholder="Whatever you can imagine..." rows="4" cols="50"></textarea>
+              <button id="generateButton" class="cta-button">Generate Image</button>
+          </div>
+          <div id="generatedImage"></div>
+      </div>
     </div>
 
     <!-- Modal -->
