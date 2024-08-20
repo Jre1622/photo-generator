@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
     <div class="landing-page">
         <%- include('partials/navbar') %>
 
@@ -16,5 +16,22 @@
             <button class="cta-button">Get Started</button>
         </div>
     </div>
-  </body>
+
+    <!-- Modal -->
+    <div id="signUpModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="registerForm">
+                <input type="email" id="email" required placeholder="Email">
+                <input type="password" id="password" required placeholder="Password">
+                <button type="submit">Register</button>
+            </form>
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <!-- Javascript Code for showing modal & fetching register route -->
+    <script src="/js/modal.js"></script>
+</body>
 </html>

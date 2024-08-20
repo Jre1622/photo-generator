@@ -3,6 +3,9 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
+// Require custom Routes
+const registerRoute = require("./routes/auth/register");
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -17,8 +20,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // Routes
-// app.use('/', require('./routes/index'));
-// app.use('/users', require('./routes/users'));
+app.use("/", registerRoute); // This will make the route available at /auth/register
 
 // Home page route
 app.get("/", (req, res) => {
