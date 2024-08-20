@@ -149,6 +149,10 @@
   display: none;
 }
 
+.auth-form.active {
+  display: block;
+}
+
 .auth-form h2 {
   text-align: center;
   margin-bottom: 20px;
