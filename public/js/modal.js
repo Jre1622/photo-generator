@@ -73,9 +73,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Handle login form submission (to be implemented)
+  // Handle login form submission
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    // Login logic to be implemented
+
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    try {
+      const response = await fetch("/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Login failed");
+      }
+
+      messageDiv.textContent = "Login successful!";
+      messageDiv.style.color = "green";
+      // Here you might want to redirect the user or update the UI for a logged-in state
+    } catch (error) {
+      messageDiv.textContent = error.message;
+      messageDiv.style.color = "red";
+    }
   });
 });
