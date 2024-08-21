@@ -3,6 +3,12 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const checkAuth = require("./middleware/checkAuth");
+const Replicate = require("replicate"); // Get THE REPLICATE MODULE
+
+// Initialize Replicate client
+const replicate = new Replicate({
+  auth: process.env.REPLICATE_API_TOKEN,
+});
 
 // Require custom Routes
 const registerRoute = require("./routes/auth/register");
@@ -35,4 +41,34 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
+});
+
+// Replicate Post
+app.post("/api/generate-image", async (req, res) => {
+  try {
+    const { prompt } = req.body;
+
+    const input = {
+      steps: 5,
+      prompt: prompt,
+      guidance: 3,
+      interval: 2,
+      aspect_ratio: "16:9",
+      safety_tolerance: 4,
+    };
+
+    const output = await replicate.run("black-forest-labs/flux-pro", { input });
+
+    // The output should be a single URL string
+    if (typeof output === "string") {
+      res.json({ imageUrl: output });
+    } else {
+      // If it's an array, use the last element (as before)
+      const imageUrl = output[output.length - 1];
+      res.json({ imageUrl });
+    }
+  } catch (error) {
+    console.error("Error generating image:", error);
+    res.status(500).json({ error: "Failed to generate image" });
+  }
 });
