@@ -43,7 +43,7 @@ router.post("/auth/login", async (req, res) => {
           // Set cookie
           res.cookie("session_id", session_id, {
             httpOnly: true,
-            secure: true, // This ensures the cookie is only sent over HTTPS
+            secure: false, // This ensures the cookie is only sent over HTTPS | if false will send over HTTP | if true will only send on HTTPS
             expires: expires_at,
           });
 
