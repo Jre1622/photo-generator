@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
 
       if (data.imageUrl) {
+        generatedImage.innerHTML = ""; // Clear previous content
         const imgElement = document.createElement("img");
         imgElement.src = data.imageUrl;
         imgElement.alt = prompt;
-
-        generatedImage.innerHTML = "";
+        imgElement.className = "generated-image";
         generatedImage.appendChild(imgElement);
       } else {
         throw new Error("No image URL received");
