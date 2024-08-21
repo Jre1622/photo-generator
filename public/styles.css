@@ -100,7 +100,7 @@
 }
 
 .modal-content {
-  background-color: rgba(254, 254, 254, 0.5);
+  background-color: rgba(254, 254, 254, 1);
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
