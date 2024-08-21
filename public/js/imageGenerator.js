@@ -11,6 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
+      // Check if user is logged in
+      const authResponse = await fetch("/api/check-auth");
+      const authData = await authResponse.json();
+
+      if (!authData.isAuthenticated) {
+        alert("Please log in to generate images");
+        return;
+      }
+
       generateButton.disabled = true;
       generateButton.textContent = "Generating...";
 
@@ -29,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
 
       if (data.imageUrl) {
-        generatedImage.innerHTML = ""; // Clear previous content
+        generatedImage.innerHTML = "";
         const imgElement = document.createElement("img");
         imgElement.src = data.imageUrl;
         imgElement.alt = prompt;

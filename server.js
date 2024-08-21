@@ -43,8 +43,17 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
+// New route to check authentication status
+app.get("/api/check-auth", checkAuth, (req, res) => {
+  res.json({ isAuthenticated: req.isAuthenticated });
+});
+
 // Replicate Post
-app.post("/api/generate-image", async (req, res) => {
+app.post("/api/generate-image", checkAuth, async (req, res) => {
+  if (!req.isAuthenticated) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
   try {
     const { prompt } = req.body;
 
@@ -59,11 +68,9 @@ app.post("/api/generate-image", async (req, res) => {
 
     const output = await replicate.run("black-forest-labs/flux-pro", { input });
 
-    // The output should be a single URL string
     if (typeof output === "string") {
       res.json({ imageUrl: output });
     } else {
-      // If it's an array, use the last element (as before)
       const imageUrl = output[output.length - 1];
       res.json({ imageUrl });
     }
