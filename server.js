@@ -58,7 +58,7 @@ app.post("/api/generate-image", checkAuth, async (req, res) => {
     const { prompt } = req.body;
 
     const input = {
-      steps: 40,
+      steps: 3,
       prompt: prompt,
       guidance: 5,
       interval: 2,
